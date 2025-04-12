@@ -177,7 +177,6 @@ class RegionPersistentCounter:
                                 continue  # don't re-check region
                             
                             # Object not assigned => check corners + midpoints
-                            # (Example: ignoring top-left corner, as requested)
                             check_points = [
                                 (x2, y1),                        # top-right corner
                                 (x1, y2),                        # bottom-left corner
@@ -220,7 +219,6 @@ class RegionPersistentCounter:
                                 2
                             )
                             
-                            # (Optional) draw check points for debug
                             for cp in check_points:
                                 cv2.circle(output_frame, (int(cp[0]), int(cp[1])), 5, color, -1)
                             
@@ -291,7 +289,6 @@ class RegionPersistentCounter:
         print(f"Upper path count: {region1_count}")
         print(f"Lower path count: {region2_count}")
         
-        # Optional: print class-level detection stats
         if self.class_counts:
             print("Class detection statistics:")
             for cls_id, count in self.class_counts.items():
