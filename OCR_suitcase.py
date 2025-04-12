@@ -100,10 +100,10 @@ class RegionPersistentCounter:
             (20, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2
         )
         
-        # Region 2 count
+        # Region 2 count (placed just below 'Upper path')
         cv2.putText(
             frame, f"Lower path: {region2_count}",
-            (20, self.height - 20), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 2
+            (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 2
         )
         
         return frame
@@ -176,15 +176,19 @@ class RegionPersistentCounter:
                                 )
                                 continue  # don't re-check region
                             
-                            # Object not assigned => check corners + midpoints
+                            # Object not assigned => check corners + edges
                             check_points = [
-                                (x2, y1),                        # top-right corner
-                                (x1, y2),                        # bottom-left corner
-                                (x2, y2),                        # bottom-right corner
-                                ((x1 + x2) / 2, y2),             # bottom midpoint
-                                (x1, (y1 + y2) / 2),             # left midpoint
-                                (x2, (y1 + y2) / 2),             # right midpoint
+                                # (x2, y1),             # top-right corner
+                                (x1, y2),             # bottom-left corner
+                                (x2, y2),             # bottom-right corner
+                                (x1, (y1 + y2) / 2),  # left midpoint
+                                (x2, (y1 + y2) / 2),  # right midpoint
                             ]
+                            
+                            # Add the entire bottom edge in steps of 10 pixels
+                            step_size = 10
+                            for xp in range(x1, x2 + 1, step_size):
+                                check_points.append((xp, y2))
                             
                             in_r1 = False
                             in_r2 = False
@@ -219,6 +223,7 @@ class RegionPersistentCounter:
                                 2
                             )
                             
+                            # (Optional) draw check points for debug
                             for cp in check_points:
                                 cv2.circle(output_frame, (int(cp[0]), int(cp[1])), 5, color, -1)
                             
@@ -289,6 +294,7 @@ class RegionPersistentCounter:
         print(f"Upper path count: {region1_count}")
         print(f"Lower path count: {region2_count}")
         
+        # Optional: print class-level detection stats
         if self.class_counts:
             print("Class detection statistics:")
             for cls_id, count in self.class_counts.items():
@@ -302,9 +308,8 @@ if __name__ == "__main__":
     # Define your region polygons here
     region1_points = [(1074, 614), (1714, 485), (1714, 536), (1074, 654)]
     region2_points = [(998, 480), (1025, 1080), (1003, 1080), (982, 480)]
-    # region1_points = [(1133, 503), (964, 292), (1036, 229), (1561, 199),(1913, 117),(1916, 190),(1753, 226),(1308, 250),(1624, 434),(1726, 470),(1133, 590)]
-    # region2_points = [(1919, 744), (1919, 1063), (0, 1080), (0, 810)]
-    # # Output video file
+    
+    # Output video file
     output_path = "baggage_counting_fast.mp4"
     
     # Initialize and run
