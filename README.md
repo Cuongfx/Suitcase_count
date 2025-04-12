@@ -1,6 +1,9 @@
 # Suitcase_count
 
-<img width="1800" alt="Image" src="[https://github.com/user-attachments/assets/84077af1-04c4-4014-a4d0-76e7baa8ba35](https://github.com/Cuongfx/Suitcase_count/blob/main/suitcase.jpg)" />
+![suitcase](https://github.com/user-attachments/assets/95a72faf-8766-48e4-a0ae-6e63bafb583d)
+
+
+https://github.com/user-attachments/assets/f7c635ec-7fda-424d-9878-cefe27a52b81
 
 ## Overview
 In many computer vision applications, it is crucial to count how many people enter or remain within certain zones in a scene (e.g., security areas, store aisles, event spaces). This project uses:
