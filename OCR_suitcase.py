@@ -100,7 +100,7 @@ class RegionPersistentCounter:
             (20, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2
         )
         
-        # Region 2 count (placed just below 'Upper path')
+        # Region 2 count 
         cv2.putText(
             frame, f"Lower path: {region2_count}",
             (20, 120), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 2
