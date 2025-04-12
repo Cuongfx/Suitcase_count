@@ -6,7 +6,7 @@
 https://github.com/user-attachments/assets/f7c635ec-7fda-424d-9878-cefe27a52b81
 
 ## Overview
-In many computer vision applications, it is crucial to count how many people enter or remain within certain zones in a scene (e.g., security areas, store aisles, event spaces). This project uses:
+In many computer vision applications at airports, accurately counting how many suitcases enter or remain within specific zones—such as security areas or store aisles—is crucial. This project utilizes:
 
 - **YOLOv11** for suitcase detection.  
 - **Built-in object tracking** to maintain a consistent ID for each person across frames.  
